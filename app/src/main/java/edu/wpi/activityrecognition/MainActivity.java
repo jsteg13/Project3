@@ -29,17 +29,19 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         txtActivity = findViewById(R.id.txt_activity);
-        txtConfidence = findViewById(R.id.txt_confidence);
+       // txtConfidence = findViewById(R.id.txt_confidence);
         imgActivity = findViewById(R.id.img_activity);
-        Button btnStartTrcking = findViewById(R.id.btn_start_tracking);
+        //Button btnStartTrcking = findViewById(R.id.btn_start_tracking);
         Button btnStopTracking = findViewById(R.id.btn_stop_tracking);
 
-        btnStartTrcking.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                startTracking();
-            }
-        });
+        startTracking();
+
+//        btnStartTrcking.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                startTracking();
+//            }
+//        });
 
         btnStopTracking.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,5 +134,17 @@ public class MainActivity extends AppCompatActivity {
     private void stopTracking() {
         Intent intent = new Intent(MainActivity.this, BackgroundDetectedActivitiesService.class);
         stopService(intent);
+    }
+
+    @Override
+    protected void onDestroy(){
+        super.onDestroy();
+        stopTracking();
+    }
+
+    @Override
+    protected void onStop(){
+        super.onStop();
+        stopTracking();
     }
 }

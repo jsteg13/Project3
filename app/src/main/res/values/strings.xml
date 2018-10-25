@@ -10,4 +10,6 @@
     <string name="activity_unknown">Unknown</string>
     <string name="user_status">User Status</string>
     <string name="activity_confidence">Confidence</string>
+    <string name="fuller_lab_geo">Visits to Fuller labs Geofence:</string>
+    <string name="library_geo">Visits to Library geoFence:</string>
 </resources>
