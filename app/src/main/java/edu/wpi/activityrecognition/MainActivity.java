@@ -94,10 +94,10 @@ public class MainActivity extends AppCompatActivity {
                 label = getString(R.string.activity_walking);
                 break;
             }
-//            case DetectedActivity.UNKNOWN: {
-//                label = getString(R.string.activity_unknown);
-//                break;
-//            }
+            case DetectedActivity.UNKNOWN: {
+                label = getString(R.string.activity_unknown);
+                break;
+            }
         }
 
         Log.e(TAG, "User activity: " + label + ", Confidence: " + confidence);
