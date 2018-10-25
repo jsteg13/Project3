@@ -1,57 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="edu.wpi.activityrecognition.MainActivity">
+    android:layout_height="match_parent">
 
 
-    <!--<TextView-->
-            <!--android:id="@+id/txt_confidence"-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:layout_gravity="center_horizontal"-->
-            <!--android:layout_marginTop="10dp"-->
-            <!--android:text="@string/activity_confidence"-->
-            <!--android:textAllCaps="true"-->
-            <!--android:textSize="14sp" />-->
-
-    <TextView
-        android:id="@+id/txt_activity"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:text="@string/user_status"
-        android:textAllCaps="true"
-        android:textColor="@color/colorPrimary"
-        android:textSize="18sp"
-        android:textStyle="bold" />
-
-    <ImageView
-        android:id="@+id/img_activity"
-        android:layout_width="160dp"
-        android:layout_height="187dp"
-        android:layout_gravity="bottom|center_horizontal|center"
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:background="@android:color/black"
-        android:contentDescription="Activity Image"
-        android:src="@drawable/still" />
+        android:orientation="vertical">
 
+        <fragment
+            android:id="@+id/fragment"
+            android:name="edu.wpi.activityrecognition.MapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="182dp" />
+
+        <include
+            layout="@layout/textview_imageview"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
     </LinearLayout>
-
-    <!--<Button-->
-        <!--android:id="@+id/btn_start_tracking"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:layout_alignParentLeft="true"-->
-        <!--android:text="Start Tracking" />-->
-
-    <!--<Button-->
-        <!--android:id="@+id/btn_stop_tracking"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:layout_alignParentRight="true"-->
-        <!--android:text="Stop Tracking" />-->
-
+</android.support.constraint.ConstraintLayout>
