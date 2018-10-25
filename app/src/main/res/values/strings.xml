@@ -8,4 +8,6 @@
     <string name="activity_tilting">Tilting</string>
     <string name="activity_walking">walking</string>
     <string name="activity_unknown">Unknown</string>
+    <string name="user_status">User Status</string>
+    <string name="activity_confidence">Confidence</string>
 </resources>

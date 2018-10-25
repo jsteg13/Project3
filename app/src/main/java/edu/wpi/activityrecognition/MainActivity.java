@@ -66,18 +66,18 @@ public class MainActivity extends AppCompatActivity {
         String label = getString(R.string.activity_unknown);
 
         switch (type) {
-            case DetectedActivity.IN_VEHICLE: {
-                label = getString(R.string.activity_in_vehicle);
-                break;
-            }
-            case DetectedActivity.ON_BICYCLE: {
-                label = getString(R.string.activity_on_bicycle);
-                break;
-            }
-            case DetectedActivity.ON_FOOT: {
-                label = getString(R.string.activity_on_foot);
-                break;
-            }
+//            case DetectedActivity.IN_VEHICLE: {
+//                label = getString(R.string.activity_in_vehicle);
+//                break;
+//            }
+//            case DetectedActivity.ON_BICYCLE: {
+//                label = getString(R.string.activity_on_bicycle);
+//                break;
+//            }
+//            case DetectedActivity.ON_FOOT: {
+//                label = getString(R.string.activity_on_foot);
+//                break;
+//            }
             case DetectedActivity.RUNNING: {
                 label = getString(R.string.activity_running);
                 break;
@@ -86,18 +86,18 @@ public class MainActivity extends AppCompatActivity {
                 label = getString(R.string.activity_still);
                 break;
             }
-            case DetectedActivity.TILTING: {
-                label = getString(R.string.activity_tilting);
-                break;
-            }
+//            case DetectedActivity.TILTING: {
+//                label = getString(R.string.activity_tilting);
+//                break;
+//            }
             case DetectedActivity.WALKING: {
                 label = getString(R.string.activity_walking);
                 break;
             }
-            case DetectedActivity.UNKNOWN: {
-                label = getString(R.string.activity_unknown);
-                break;
-            }
+//            case DetectedActivity.UNKNOWN: {
+//                label = getString(R.string.activity_unknown);
+//                break;
+//            }
         }
 
         Log.e(TAG, "User activity: " + label + ", Confidence: " + confidence);
@@ -106,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
             txtActivity.setText(label);
             txtConfidence.setText("Confidence: " + confidence);
         }
+//        txtActivity.setText(label);
     }
 
     @Override
