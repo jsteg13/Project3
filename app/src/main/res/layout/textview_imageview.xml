@@ -19,7 +19,7 @@
             android:layout_width="250dp"
             android:layout_height="203dp"
             android:background="@android:color/black"
-            app:srcCompat="@drawable/still"
+            app:srcCompat="@drawable/running"
             tools:layout_editor_absoluteX="103dp"
             tools:layout_editor_absoluteY="81dp" />
 
@@ -27,7 +27,6 @@
             android:id="@+id/user_status"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|center_horizontal"
             android:text="@string/user_status"
             android:textColor="@android:color/white"
             android:textSize="20sp"

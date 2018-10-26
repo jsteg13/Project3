@@ -28,27 +28,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        txtActivity = findViewById(R.id.txt_activity);
-       // txtConfidence = findViewById(R.id.txt_confidence);
+        txtActivity = findViewById(R.id.user_status);
         imgActivity = findViewById(R.id.img_activity);
-        //Button btnStartTrcking = findViewById(R.id.btn_start_tracking);
-        Button btnStopTracking = findViewById(R.id.btn_stop_tracking);
 
-        startTracking();
-
-//        btnStartTrcking.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                startTracking();
-//            }
-//        });
-
-        btnStopTracking.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                stopTracking();
-            }
-        });
 
         broadcastReceiver = new BroadcastReceiver() {
             @Override
@@ -68,18 +50,6 @@ public class MainActivity extends AppCompatActivity {
         String label = getString(R.string.activity_unknown);
 
         switch (type) {
-//            case DetectedActivity.IN_VEHICLE: {
-//                label = getString(R.string.activity_in_vehicle);
-//                break;
-//            }
-//            case DetectedActivity.ON_BICYCLE: {
-//                label = getString(R.string.activity_on_bicycle);
-//                break;
-//            }
-//            case DetectedActivity.ON_FOOT: {
-//                label = getString(R.string.activity_on_foot);
-//                break;
-//            }
             case DetectedActivity.RUNNING: {
                 label = getString(R.string.activity_running);
                 break;
@@ -88,16 +58,8 @@ public class MainActivity extends AppCompatActivity {
                 label = getString(R.string.activity_still);
                 break;
             }
-//            case DetectedActivity.TILTING: {
-//                label = getString(R.string.activity_tilting);
-//                break;
-//            }
             case DetectedActivity.WALKING: {
                 label = getString(R.string.activity_walking);
-                break;
-            }
-            case DetectedActivity.UNKNOWN: {
-                label = getString(R.string.activity_unknown);
                 break;
             }
         }
@@ -105,10 +67,19 @@ public class MainActivity extends AppCompatActivity {
         Log.e(TAG, "User activity: " + label + ", Confidence: " + confidence);
 
         if (confidence > Constants.CONFIDENCE) {
-            txtActivity.setText(label);
-            txtConfidence.setText("Confidence: " + confidence);
+            if(label == getString(R.string.activity_still)){
+                txtActivity.setText(label);
+                imgActivity.setImageResource(R.drawable.still);
+            }
+            else if(label == getString(R.string.activity_walking)){
+                txtActivity.setText(label);
+                imgActivity.setImageResource(R.drawable.walking);
+            }
+            else if(label == getString(R.string.activity_running)){
+                txtActivity.setText(label);
+                imgActivity.setImageResource(R.drawable.running);
+            }
         }
-//        txtActivity.setText(label);
     }
 
     @Override
@@ -117,6 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
         LocalBroadcastManager.getInstance(this).registerReceiver(broadcastReceiver,
                 new IntentFilter(Constants.BROADCAST_DETECTED_ACTIVITY));
+        startTracking();
     }
 
     @Override
