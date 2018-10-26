@@ -14,6 +14,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.location.DetectedActivity;
 
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     private Sensor accel;
     private static final String TEXT_NUM_STEPS = "Number of Steps: ";
     private int numSteps;
+    long begin = System.currentTimeMillis();
 
 
     private String TAG = MainActivity.class.getSimpleName();
@@ -89,6 +91,7 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     private void handleUserActivity(int type, int confidence) {
         String label = getString(R.string.activity_unknown);
+        String time;
 
         switch (type) {
             case DetectedActivity.RUNNING: {
@@ -111,16 +114,34 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
             if(label == getString(R.string.activity_still)){
                 txtActivity.setText(label);
                 imgActivity.setImageResource(R.drawable.still);
+                time = "You have stood still for " + time(begin);
+                Toast.makeText(getApplicationContext(), time, Toast.LENGTH_SHORT).show();
+                begin = System.currentTimeMillis();
             }
             else if(label == getString(R.string.activity_walking)){
                 txtActivity.setText(label);
                 imgActivity.setImageResource(R.drawable.walking);
+                time = "You have walked for " + time(begin);
+                Toast.makeText(getApplicationContext(), time, Toast.LENGTH_SHORT).show();
+                begin = System.currentTimeMillis();
+            }
             }
             else if(label == getString(R.string.activity_running)){
                 txtActivity.setText(label);
                 imgActivity.setImageResource(R.drawable.running);
+                time = "You have run for " + time(begin);
+                Toast.makeText(getApplicationContext(), time, Toast.LENGTH_SHORT).show();
+                begin = System.currentTimeMillis();
+
             }
         }
+
+    private String time(long begin){
+        long millis = System.currentTimeMillis() - begin;
+        int seconds = (int) (millis / 1000);
+        int minutes = seconds / 60;
+        seconds     = seconds % 60;
+        return minutes+" Minutes "+seconds+" Seconds.";
     }
 
     @Override
