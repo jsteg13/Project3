@@ -14,8 +14,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.gms.location.DetectedActivity;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements
+        OnMapReadyCallback,
+        GoogleMap.OnMapClickListener,
+        GoogleMap.OnMarkerClickListener {
 
     private String TAG = MainActivity.class.getSimpleName();
     BroadcastReceiver broadcastReceiver;
@@ -124,5 +131,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onStop(){
         super.onStop();
         stopTracking();
+    }
+
+    @Override
+    public void onMapClick(LatLng latLng) {
+
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        return false;
+    }
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+
     }
 }
