@@ -4,12 +4,14 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.hardware.Sensor;
+import android.hardware.SensorEvent;
+import android.hardware.SensorEventListener;
+import android.hardware.SensorManager;
 import android.support.v4.content.LocalBroadcastManager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.View;
-import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -19,16 +21,31 @@ import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.Marker;
 
+<<<<<<< HEAD
 public class MainActivity extends AppCompatActivity implements
         OnMapReadyCallback,
         GoogleMap.OnMapClickListener,
         GoogleMap.OnMarkerClickListener {
+=======
+public class MainActivity extends AppCompatActivity implements SensorEventListener, Listener {
+
+
+    private TextView textView;
+    private StepDetector simpleStepDetector;
+    private SensorManager sensorManager;
+    private Sensor accel;
+    private static final String TEXT_NUM_STEPS = "Number of Steps: ";
+    private int numSteps;
+
+>>>>>>> origin/StepDetector
 
     private String TAG = MainActivity.class.getSimpleName();
     BroadcastReceiver broadcastReceiver;
 
     private TextView txtActivity, txtConfidence;
     private ImageView imgActivity;
+
+    private TextView TvSteps;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,9 +66,37 @@ public class MainActivity extends AppCompatActivity implements
                 }
             }
         };
+         TvSteps = findViewById(R.id.tv_steps);
 
         startTracking();
+        sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
+        accel = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
+        simpleStepDetector = new StepDetector();
+        simpleStepDetector.registerListener(this);
+
+        numSteps = 0;
+        sensorManager.registerListener(MainActivity.this, accel, SensorManager.SENSOR_DELAY_FASTEST);
+
     }
+    @Override
+    public void onAccuracyChanged(Sensor sensor, int accuracy) {
+    }
+
+    @Override
+    public void onSensorChanged(SensorEvent event) {
+        if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
+            simpleStepDetector.updateAccel(
+                    event.timestamp, event.values[0], event.values[1], event.values[2]);
+        }
+    }
+
+    @Override
+    public void step(long timeNs) {
+        numSteps++;
+        TvSteps.setText(TEXT_NUM_STEPS + numSteps);
+    }
+
+
 
     private void handleUserActivity(int type, int confidence) {
         String label = getString(R.string.activity_unknown);
@@ -133,6 +178,7 @@ public class MainActivity extends AppCompatActivity implements
         stopTracking();
     }
 
+<<<<<<< HEAD
     @Override
     public void onMapClick(LatLng latLng) {
 
@@ -148,3 +194,6 @@ public class MainActivity extends AppCompatActivity implements
 
     }
 }
+=======
+}
+>>>>>>> origin/StepDetector
