@@ -62,6 +62,10 @@ public class MainActivity extends AppCompatActivity {
                 label = getString(R.string.activity_walking);
                 break;
             }
+            case DetectedActivity.UNKNOWN:{
+                label = "unknown";
+                break;
+            }
         }
 
         Log.e(TAG, "User activity: " + label + ", Confidence: " + confidence);
@@ -78,6 +82,8 @@ public class MainActivity extends AppCompatActivity {
             else if(label == getString(R.string.activity_running)){
                 txtActivity.setText(label);
                 imgActivity.setImageResource(R.drawable.running);
+            }else{
+                txtActivity.setText("unknown");
             }
         }
     }
